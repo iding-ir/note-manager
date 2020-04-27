@@ -6,11 +6,11 @@ import { Field, reduxForm } from "redux-form";
 
 import "./new.css";
 import { openNewModal, closeNewModal } from "../actions/new";
+import { createNote } from "../actions/notes";
 
 class New extends Component {
   renderError = (meta) => {
     const { error, touched } = meta;
-    console.log(error, meta);
 
     if (error && touched) {
       return <Alert variant="danger">{error}</Alert>;
@@ -55,6 +55,12 @@ class New extends Component {
     );
   };
 
+  handleCreateNote = async () => {
+    const { createNote, title, content } = this.props;
+
+    createNote({ title, content });
+  };
+
   render() {
     const { visible, openNewModal, closeNewModal, valid } = this.props;
 
@@ -92,7 +98,11 @@ class New extends Component {
               Close
             </Button>
 
-            <Button variant="success" disabled={!valid}>
+            <Button
+              variant="success"
+              disabled={!valid}
+              onClick={this.handleCreateNote}
+            >
               Save
             </Button>
           </Modal.Footer>
@@ -104,6 +114,12 @@ class New extends Component {
 
 const mapStateToProps = (state) => ({
   visible: state.newModal.visible,
+  title:
+    state.form.new && state.form.new.values ? state.form.new.values.title : "",
+  content:
+    state.form.new && state.form.new.values
+      ? state.form.new.values.content
+      : "",
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -111,6 +127,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       openNewModal,
       closeNewModal,
+      createNote,
     },
     dispatch
   );
