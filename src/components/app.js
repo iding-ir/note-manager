@@ -3,6 +3,7 @@ import "bootswatch/dist/flatly/bootstrap.min.css";
 
 import "./app.css";
 import Header from "./header";
+import New from "./new";
 import Footer from "./footer";
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
     <React.Fragment>
       <Header />
 
-      <div className="app container bg-light"></div>
+      <div className="app container-fluid bg-light">
+        <New />
+      </div>
 
       <Footer />
     </React.Fragment>

@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 
+import newModalReducer from "./new";
+
 const combinedReducers = combineReducers({
-  placeHolder: "placeholder",
+  newModal: newModalReducer,
 });
 
 export default combinedReducers;
