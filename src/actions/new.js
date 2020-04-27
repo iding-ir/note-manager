@@ -1,12 +1,12 @@
 import { NEW_OPEN, NEW_CLOSE } from "../constants";
 
-export const openNewModal = () => {
+export const openNew = () => {
   return {
     type: NEW_OPEN,
   };
 };
 
-export const closeNewModal = () => {
+export const closeNew = () => {
   return {
     type: NEW_CLOSE,
   };

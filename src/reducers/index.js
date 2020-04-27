@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 
-import newModalReducer from "./new";
+import newReducer from "./new";
 
 const combinedReducers = combineReducers({
-  newModal: newModalReducer,
+  new: newReducer,
   form: formReducer,
 });
 

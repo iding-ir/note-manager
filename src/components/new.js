@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { Field, reduxForm } from "redux-form";
 
 import "./new.css";
-import { openNewModal, closeNewModal } from "../actions/new";
+import { openNew, closeNew } from "../actions/new";
 import { createNote } from "../actions/notes";
 
 class New extends Component {
@@ -62,15 +62,15 @@ class New extends Component {
   };
 
   render() {
-    const { visible, openNewModal, closeNewModal, valid } = this.props;
+    const { visible, openNew, closeNew, valid } = this.props;
 
     return (
       <div className="new">
-        <Button variant="success" onClick={openNewModal}>
+        <Button variant="success" onClick={openNew}>
           Add new
         </Button>
 
-        <Modal show={visible} onHide={closeNewModal}>
+        <Modal show={visible} onHide={closeNew}>
           <Modal.Header closeButton>
             <Modal.Title>Add a new note</Modal.Title>
           </Modal.Header>
@@ -94,7 +94,7 @@ class New extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="secondary" onClick={closeNewModal}>
+            <Button variant="secondary" onClick={closeNew}>
               Close
             </Button>
 
@@ -113,7 +113,7 @@ class New extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  visible: state.newModal.visible,
+  visible: state.new.visible,
   title:
     state.form.new && state.form.new.values ? state.form.new.values.title : "",
   content:
@@ -125,8 +125,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      openNewModal,
-      closeNewModal,
+      openNew,
+      closeNew,
       createNote,
     },
     dispatch
