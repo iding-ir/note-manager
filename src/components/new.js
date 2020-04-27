@@ -10,6 +10,7 @@ import { openNewModal, closeNewModal } from "../actions/new";
 class New extends Component {
   renderError = (meta) => {
     const { error, touched } = meta;
+    console.log(error, meta);
 
     if (error && touched) {
       return <Alert variant="danger">{error}</Alert>;
@@ -134,6 +135,7 @@ const validate = (formValues) => {
 
 const formNew = reduxForm({
   form: "new",
+  destroyOnUnmount: false,
   validate,
 })(New);
 
