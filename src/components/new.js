@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Modal, Form, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, reset } from "redux-form";
 
 import "./new.css";
 import { openNew, closeNew } from "../actions/new";
@@ -56,9 +56,13 @@ class New extends Component {
   };
 
   handleCreateNote = async () => {
-    const { createNote, title, content } = this.props;
+    const { createNote, title, content, closeNew, reset } = this.props;
 
-    createNote({ title, content });
+    await createNote({ title, content });
+
+    closeNew();
+
+    reset();
   };
 
   render() {
@@ -128,6 +132,7 @@ const mapDispatchToProps = (dispatch) =>
       openNew,
       closeNew,
       createNote,
+      reset,
     },
     dispatch
   );
