@@ -1,14 +1,62 @@
 import React, { Component } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal, Form, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Field, reduxForm } from "redux-form";
 
 import "./new.css";
 import { openNewModal, closeNewModal } from "../actions/new";
 
 class New extends Component {
+  renderError = (meta) => {
+    const { error, touched } = meta;
+
+    if (error && touched) {
+      return <Alert variant="danger">{error}</Alert>;
+    }
+  };
+
+  renderTextfield = (props) => {
+    const { input, label, placeholder, meta } = props;
+
+    return (
+      <Form.Group>
+        <Form.Label>{label}</Form.Label>
+
+        {this.renderError(meta)}
+
+        <Form.Control
+          {...input}
+          type="text"
+          placeholder={placeholder}
+          autoComplete="off"
+        />
+      </Form.Group>
+    );
+  };
+
+  renderTextarea = (props) => {
+    const { input, label, placeholder, meta } = props;
+
+    return (
+      <Form.Group>
+        <Form.Label>{label}</Form.Label>
+
+        {this.renderError(meta)}
+
+        <Form.Control
+          {...input}
+          as="textarea"
+          rows="3"
+          placeholder={placeholder}
+        />
+      </Form.Group>
+    );
+  };
+
   render() {
-    const { visible, openNewModal, closeNewModal } = this.props;
+    const { visible, openNewModal, closeNewModal, valid } = this.props;
+
     return (
       <div className="new">
         <Button variant="success" onClick={openNewModal}>
@@ -22,21 +70,19 @@ class New extends Component {
 
           <Modal.Body>
             <Form>
-              <Form.Group>
-                <Form.Label>Title</Form.Label>
+              <Field
+                name="title"
+                label="Enter title"
+                placeholder="Note title"
+                component={this.renderTextfield}
+              />
 
-                <Form.Control type="text" placeholder="Note title" />
-              </Form.Group>
-
-              <Form.Group>
-                <Form.Label>Content</Form.Label>
-
-                <Form.Control
-                  as="textarea"
-                  rows="3"
-                  placeholder="Note Content"
-                />
-              </Form.Group>
+              <Field
+                name="content"
+                label="Enter content"
+                placeholder="Note content"
+                component={this.renderTextarea}
+              />
             </Form>
           </Modal.Body>
 
@@ -45,7 +91,9 @@ class New extends Component {
               Close
             </Button>
 
-            <Button variant="success">Save</Button>
+            <Button variant="success" disabled={!valid}>
+              Save
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -66,4 +114,27 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(New);
+const validate = (formValues) => {
+  const errors = {};
+
+  if (!formValues.title) {
+    errors.title = "Title cannot be empty.";
+  } else if (formValues.title.length < 3) {
+    errors.title = "Enter a longer title.";
+  }
+
+  if (!formValues.content) {
+    errors.content = "Content cannot be empty.";
+  } else if (formValues.content.length < 3) {
+    errors.content = "Enter a longer content.";
+  }
+
+  return errors;
+};
+
+const formNew = reduxForm({
+  form: "new",
+  validate,
+})(New);
+
+export default connect(mapStateToProps, mapDispatchToProps)(formNew);
