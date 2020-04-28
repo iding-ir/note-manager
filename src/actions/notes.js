@@ -14,7 +14,7 @@ export const createNote = (note) => async (dispatch) => {
 };
 
 export const deleteNote = (id) => async (dispatch) => {
-  await notes.delete("/notes", id);
+  await notes.delete(`/notes/${id}`);
 
   dispatch({ type: NOTE_DELETE, payload: id });
 };

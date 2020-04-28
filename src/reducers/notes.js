@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import {
   NOTE_CREATE,
   NOTE_DELETE,
@@ -16,10 +18,10 @@ const reducer = (state = INITIAL_STATE, action) => {
       return { ...state, [action.payload.id]: action.payload };
 
     case NOTE_DELETE:
-      return { ...state, [action.payload]: undefined };
+      return _.omit(state, action.payload);
 
     case NOTES_FETCH:
-      return { ...action.payload };
+      return { ...state, ..._.mapKeys(action.payload, "id") };
     default:
       return state;
   }

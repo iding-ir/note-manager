@@ -1,11 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Card, Dropdown } from "react-bootstrap";
 
+import { deleteNote } from "../actions/notes";
 import "./note.css";
 
 class Note extends Component {
   render() {
-    const { title, content } = this.props.note;
+    const { id, title, content } = this.props.note;
+    const { deleteNote } = this.props;
 
     return (
       <Card>
@@ -16,7 +20,9 @@ class Note extends Component {
             <Dropdown.Toggle variant="Secondary"></Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item>Remove</Dropdown.Item>
+              <Dropdown.Item onClick={() => deleteNote(id)}>
+                Remove
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Card.Header>
@@ -29,4 +35,12 @@ class Note extends Component {
   }
 }
 
-export default Note;
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      deleteNote,
+    },
+    dispatch
+  );
+
+export default connect(null, mapDispatchToProps)(Note);
