@@ -116,6 +116,30 @@ class New extends Component {
   }
 }
 
+const validate = (formValues) => {
+  const errors = {};
+
+  if (!formValues.title) {
+    errors.title = "Title cannot be empty.";
+  } else if (formValues.title.length < 3) {
+    errors.title = "Enter a longer title.";
+  }
+
+  if (!formValues.content) {
+    errors.content = "Content cannot be empty.";
+  } else if (formValues.content.length < 3) {
+    errors.content = "Enter a longer content.";
+  }
+
+  return errors;
+};
+
+const wrappedNew = reduxForm({
+  form: "new",
+  destroyOnUnmount: false,
+  validate,
+})(New);
+
 const mapStateToProps = (state) => ({
   visible: state.new.visible,
   title:
@@ -137,28 +161,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-const validate = (formValues) => {
-  const errors = {};
-
-  if (!formValues.title) {
-    errors.title = "Title cannot be empty.";
-  } else if (formValues.title.length < 3) {
-    errors.title = "Enter a longer title.";
-  }
-
-  if (!formValues.content) {
-    errors.content = "Content cannot be empty.";
-  } else if (formValues.content.length < 3) {
-    errors.content = "Enter a longer content.";
-  }
-
-  return errors;
-};
-
-const formNew = reduxForm({
-  form: "new",
-  destroyOnUnmount: false,
-  validate,
-})(New);
-
-export default connect(mapStateToProps, mapDispatchToProps)(formNew);
+export default connect(mapStateToProps, mapDispatchToProps)(wrappedNew);

@@ -15,9 +15,9 @@ class Notes extends Component {
   render() {
     const { notes } = this.props;
 
-    return Object.values(notes).map((note) => (
-      <Note key={note.id} note={note} />
-    ));
+    return Object.values(notes)
+      .reverse()
+      .map((note) => <Note key={note.id} note={note} />);
   }
 }
 
