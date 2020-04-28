@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import { Button, Modal as BootstrapModal, Form, Alert } from "react-bootstrap";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Field, reduxForm, reset } from "redux-form";
-
-import { openModal, closeModal } from "../actions/modal";
-import { createNote } from "../actions/notes";
+import { Field, reduxForm } from "redux-form";
 
 class Modal extends Component {
   renderError = (meta) => {
@@ -126,40 +121,15 @@ const validate = (formValues) => {
 
   if (!formValues.content) {
     errors.content = "Content cannot be empty.";
-  } else if (formValues.content.length < 3) {
+  } else if (formValues.content.length < 5) {
     errors.content = "Enter a longer content.";
   }
 
   return errors;
 };
 
-const wrappedModal = reduxForm({
+export default reduxForm({
   form: "modal",
   destroyOnUnmount: false,
   validate,
 })(Modal);
-
-const mapStateToProps = (state) => ({
-  visible: state.modal.visible,
-  title:
-    state.form.modal && state.form.modal.values
-      ? state.form.modal.values.title
-      : "",
-  content:
-    state.form.modal && state.form.modal.values
-      ? state.form.modal.values.content
-      : "",
-});
-
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      openModal,
-      closeModal,
-      createNote,
-      reset,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(wrappedModal);

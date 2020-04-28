@@ -31,7 +31,7 @@ body,
 }
 
 .modal-wrapper {
-  padding: 1rem;
+  padding: 1rem 0;
   border-bottom: 1px solid rgba(130, 130, 130, 0.3);
   margin-bottom: 1rem;
 }
