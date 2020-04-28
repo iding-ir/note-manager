@@ -4,6 +4,7 @@ import "bootswatch/dist/flatly/bootstrap.min.css";
 import "./app.css";
 import Header from "./header";
 import New from "./new";
+import Notes from "./notes";
 import Footer from "./footer";
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
 
       <div className="app container-fluid bg-light">
         <New />
+
+        <Notes />
       </div>
 
       <Footer />
