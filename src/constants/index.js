@@ -1,5 +1,5 @@
-export const NEW_OPEN = "NEW_OPEN";
-export const NEW_CLOSE = "NEW_CLOSE";
+export const MODAL_OPEN = "MODAL_OPEN";
+export const MODAL_CLOSE = "MODAL_CLOSE";
 
 export const NOTE_CREATE = "NOTE_CREATE";
 export const NOTE_DELETE = "NOTE_DELETE";

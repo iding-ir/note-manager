@@ -18,3 +18,34 @@ body,
   display: flex;
   flex-direction: column;
 }
+
+.app {
+  flex-grow: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  text-align: center;
+  padding: 0.5rem 1rem;
+}
+
+.modal-wrapper {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(130, 130, 130, 0.3);
+  margin-bottom: 1rem;
+}
+
+.card {
+  margin-bottom: 1rem;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-header span {
+  flex-grow: 10;
+}

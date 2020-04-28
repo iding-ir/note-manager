@@ -1,8 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 
-import "./header.css";
-
 function Header() {
   return (
     <Navbar bg="primary" variant="dark" expand="lg">

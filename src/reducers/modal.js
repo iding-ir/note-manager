@@ -1,4 +1,4 @@
-import { NEW_OPEN, NEW_CLOSE } from "../constants";
+import { MODAL_OPEN, MODAL_CLOSE } from "../constants";
 
 const INITIAL_STATE = {
   visible: false,
@@ -6,10 +6,10 @@ const INITIAL_STATE = {
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case NEW_OPEN:
+    case MODAL_OPEN:
       return { ...state, visible: true };
 
-    case NEW_CLOSE:
+    case MODAL_CLOSE:
       return { ...state, visible: false };
     default:
       return state;

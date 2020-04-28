@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Card, Dropdown } from "react-bootstrap";
 
 import { deleteNote } from "../actions/notes";
-import "./note.css";
 
 class Note extends Component {
   render() {

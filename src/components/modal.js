@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import { Button, Modal, Form, Alert } from "react-bootstrap";
+import { Button, Modal as BootstrapModal, Form, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Field, reduxForm, reset } from "redux-form";
 
-import "./new.css";
-import { openNew, closeNew } from "../actions/new";
+import { openModal, closeModal } from "../actions/modal";
 import { createNote } from "../actions/notes";
 
-class New extends Component {
+class Modal extends Component {
   renderError = (meta) => {
     const { error, touched } = meta;
 
@@ -56,30 +55,30 @@ class New extends Component {
   };
 
   handleCreateNote = async () => {
-    const { createNote, title, content, closeNew, reset } = this.props;
+    const { createNote, title, content, closeModal, reset } = this.props;
 
     await createNote({ title, content });
 
-    closeNew();
+    closeModal();
 
     reset();
   };
 
   render() {
-    const { visible, openNew, closeNew, valid } = this.props;
+    const { visible, openModal, closeModal, valid } = this.props;
 
     return (
-      <div className="new">
-        <Button variant="success" onClick={openNew}>
+      <div className="modal-wrapper">
+        <Button variant="success" onClick={openModal}>
           Add new
         </Button>
 
-        <Modal show={visible} onHide={closeNew}>
-          <Modal.Header closeButton>
-            <Modal.Title>Add a new note</Modal.Title>
-          </Modal.Header>
+        <BootstrapModal show={visible} onHide={closeModal}>
+          <BootstrapModal.Header closeButton>
+            <BootstrapModal.Title>Add a new note</BootstrapModal.Title>
+          </BootstrapModal.Header>
 
-          <Modal.Body>
+          <BootstrapModal.Body>
             <Form>
               <Field
                 name="title"
@@ -95,10 +94,10 @@ class New extends Component {
                 component={this.renderTextarea}
               />
             </Form>
-          </Modal.Body>
+          </BootstrapModal.Body>
 
-          <Modal.Footer>
-            <Button variant="secondary" onClick={closeNew}>
+          <BootstrapModal.Footer>
+            <Button variant="secondary" onClick={closeModal}>
               Close
             </Button>
 
@@ -109,8 +108,8 @@ class New extends Component {
             >
               Save
             </Button>
-          </Modal.Footer>
-        </Modal>
+          </BootstrapModal.Footer>
+        </BootstrapModal>
       </div>
     );
   }
@@ -134,31 +133,33 @@ const validate = (formValues) => {
   return errors;
 };
 
-const wrappedNew = reduxForm({
-  form: "new",
+const wrappedModal = reduxForm({
+  form: "modal",
   destroyOnUnmount: false,
   validate,
-})(New);
+})(Modal);
 
 const mapStateToProps = (state) => ({
-  visible: state.new.visible,
+  visible: state.modal.visible,
   title:
-    state.form.new && state.form.new.values ? state.form.new.values.title : "",
+    state.form.modal && state.form.modal.values
+      ? state.form.modal.values.title
+      : "",
   content:
-    state.form.new && state.form.new.values
-      ? state.form.new.values.content
+    state.form.modal && state.form.modal.values
+      ? state.form.modal.values.content
       : "",
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      openNew,
-      closeNew,
+      openModal,
+      closeModal,
       createNote,
       reset,
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(wrappedNew);
+export default connect(mapStateToProps, mapDispatchToProps)(wrappedModal);
