@@ -1,6 +1,8 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 
+import GoogleAuth2 from "react-redux-google-auth2/components/googleAuth2/";
+
 function Header() {
   return (
     <Navbar bg="primary" variant="dark" expand="lg">
@@ -10,6 +12,8 @@ function Header() {
 
       <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
         <Nav>
+          <GoogleAuth2 clientId="978371680949-7iclvimbtnkiqncnnbf4v7tiibtt5vnp.apps.googleusercontent.com" />
+
           <Nav.Link href="#">Github</Nav.Link>
         </Nav>
       </Navbar.Collapse>
