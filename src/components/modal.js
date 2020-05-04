@@ -126,13 +126,13 @@ const validate = (formValues) => {
   if (!formValues.title) {
     errors.title = "Title cannot be empty.";
   } else if (formValues.title.length < 3) {
-    errors.title = "Enter a longer title.";
+    errors.title = "Title must be at least 3 characters long.";
   }
 
   if (!formValues.content) {
     errors.content = "Content cannot be empty.";
   } else if (formValues.content.length < 5) {
-    errors.content = "Enter a longer content.";
+    errors.content = "Content must be at least 5 characters long.";
   }
 
   return errors;
