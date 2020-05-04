@@ -29,6 +29,7 @@ class App extends Component {
       reset,
       notes,
       deleteNote,
+      googleAuth2,
     } = this.props;
 
     return (
@@ -44,6 +45,7 @@ class App extends Component {
             closeModal={closeModal}
             createNote={createNote}
             reset={reset}
+            googleAuth2={googleAuth2}
           />
 
           <Notes notes={notes} deleteNote={deleteNote} />
@@ -66,6 +68,7 @@ const mapStateToProps = (state) => ({
       ? state.form.modal.values.content
       : "",
   notes: state.notes,
+  googleAuth2: state.googleAuth2,
 });
 
 const mapDispatchToProps = (dispatch) =>

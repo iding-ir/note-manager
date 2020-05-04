@@ -60,7 +60,17 @@ class Modal extends Component {
   };
 
   render() {
-    const { visible, openModal, closeModal, valid } = this.props;
+    const { visible, openModal, closeModal, valid, googleAuth2 } = this.props;
+
+    if (!googleAuth2.isSignedIn) {
+      return (
+        <div className="modal-wrapper">
+          <div className="alert alert-danger">
+            Please first sign in with Google.
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className="modal-wrapper">

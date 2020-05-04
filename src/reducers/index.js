@@ -3,7 +3,7 @@ import { reducer as formReducer } from "redux-form";
 
 import modalReducer from "./modal";
 import notesReducer from "./notes";
-import { googleAuth2Reducer } from "react-redux-google-auth2/reducers/googleAuth2";
+import { googleAuth2Reducer } from "react-redux-google-auth2/dist/reducers/googleAuth2";
 
 const combinedReducers = combineReducers({
   modal: modalReducer,

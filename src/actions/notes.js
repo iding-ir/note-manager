@@ -7,8 +7,10 @@ import {
   NOTES_FETCH,
 } from "../constants";
 
-export const createNote = (note) => async (dispatch) => {
-  const response = await notes.post("/notes", note);
+export const createNote = (note) => async (dispatch, getState) => {
+  const user = getState().googleAuth2.user;
+
+  const response = await notes.post("/notes", { ...note, user });
 
   dispatch({ type: NOTE_CREATE, payload: response.data });
 };

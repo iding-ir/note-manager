@@ -49,3 +49,7 @@ body,
 .card-header span {
   flex-grow: 10;
 }
+
+.alert {
+  margin-bottom: 0 !important;
+}
