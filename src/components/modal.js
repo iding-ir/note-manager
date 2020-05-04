@@ -64,9 +64,9 @@ class Modal extends Component {
 
     if (!googleAuth2.isSignedIn) {
       return (
-        <div className="modal-wrapper">
+        <div className="modal-alert">
           <div className="alert alert-danger">
-            Please first sign in with Google.
+            Please first sign in with Google in order to add a new note.
           </div>
         </div>
       );
