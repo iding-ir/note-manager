@@ -48,7 +48,11 @@ class App extends Component {
             googleAuth2={googleAuth2}
           />
 
-          <Notes notes={notes} deleteNote={deleteNote} />
+          <Notes
+            notes={notes}
+            deleteNote={deleteNote}
+            googleAuth2={googleAuth2}
+          />
         </div>
 
         <Footer />

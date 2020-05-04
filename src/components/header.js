@@ -12,7 +12,11 @@ function Header() {
 
       <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
         <Nav>
-          <GoogleAuth2 clientId="978371680949-7iclvimbtnkiqncnnbf4v7tiibtt5vnp.apps.googleusercontent.com" />
+          <GoogleAuth2
+            clientId="978371680949-7iclvimbtnkiqncnnbf4v7tiibtt5vnp.apps.googleusercontent.com"
+            signInClass="btn btn-success"
+            signOutClass="btn btn-danger"
+          />
 
           <Nav.Link href="#">Github</Nav.Link>
         </Nav>
