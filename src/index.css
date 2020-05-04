@@ -25,6 +25,16 @@ body,
   flex-direction: column;
 }
 
+.navbar .btn {
+  margin-top: 1rem;
+}
+
+@media only screen and (min-width: 992px) {
+  .navbar .btn {
+    margin-top: 0;
+  }
+}
+
 .footer {
   text-align: center;
   padding: 0.5rem 1rem;
