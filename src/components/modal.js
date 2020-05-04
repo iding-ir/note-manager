@@ -62,61 +62,65 @@ class Modal extends Component {
   render() {
     const { visible, openModal, closeModal, valid, googleAuth2 } = this.props;
 
-    if (!googleAuth2.isSignedIn) {
-      return (
-        <div className="modal-alert">
+    const renderBasedOnAuth = () => {
+      if (googleAuth2.isSignedIn) {
+        return (
+          <>
+            <Button variant="success" onClick={openModal}>
+              Add new
+            </Button>
+
+            <BootstrapModal show={visible} onHide={closeModal}>
+              <BootstrapModal.Header closeButton>
+                <BootstrapModal.Title>Add a new note</BootstrapModal.Title>
+              </BootstrapModal.Header>
+
+              <BootstrapModal.Body>
+                <Form>
+                  <Field
+                    name="title"
+                    label="Enter title"
+                    placeholder="Note title"
+                    component={this.renderTextfield}
+                  />
+
+                  <Field
+                    name="content"
+                    label="Enter content"
+                    placeholder="Note content"
+                    component={this.renderTextarea}
+                  />
+                </Form>
+              </BootstrapModal.Body>
+
+              <BootstrapModal.Footer>
+                <Button variant="secondary" onClick={closeModal}>
+                  Close
+                </Button>
+
+                <Button
+                  variant="success"
+                  disabled={!valid}
+                  onClick={this.handleCreateNote}
+                >
+                  Save
+                </Button>
+              </BootstrapModal.Footer>
+            </BootstrapModal>
+          </>
+        );
+      } else if (googleAuth2.isSignedIn === false) {
+        return (
           <div className="alert alert-danger">
             Please first sign in with Google in order to add a new note.
           </div>
-        </div>
-      );
-    }
+        );
+      } else {
+        return "";
+      }
+    };
 
-    return (
-      <div className="modal-wrapper">
-        <Button variant="success" onClick={openModal}>
-          Add new
-        </Button>
-
-        <BootstrapModal show={visible} onHide={closeModal}>
-          <BootstrapModal.Header closeButton>
-            <BootstrapModal.Title>Add a new note</BootstrapModal.Title>
-          </BootstrapModal.Header>
-
-          <BootstrapModal.Body>
-            <Form>
-              <Field
-                name="title"
-                label="Enter title"
-                placeholder="Note title"
-                component={this.renderTextfield}
-              />
-
-              <Field
-                name="content"
-                label="Enter content"
-                placeholder="Note content"
-                component={this.renderTextarea}
-              />
-            </Form>
-          </BootstrapModal.Body>
-
-          <BootstrapModal.Footer>
-            <Button variant="secondary" onClick={closeModal}>
-              Close
-            </Button>
-
-            <Button
-              variant="success"
-              disabled={!valid}
-              onClick={this.handleCreateNote}
-            >
-              Save
-            </Button>
-          </BootstrapModal.Footer>
-        </BootstrapModal>
-      </div>
-    );
+    return <div className="modal-wrapper">{renderBasedOnAuth()}</div>;
   }
 }
 
