@@ -1,12 +1,24 @@
 ## Index
 
 - [Intro](#intro)
-- [API](#api)
+- [Initialization](#initialization)
 
 ## Intro
 
 This project was created using React and Redux to demonstrate my front-end skills.
 
-## API
+I used my [react-redux-google-auth2](#https://github.com/iding-ir/react-redux-google-auth2) component for authentication, and [json-server](https://github.com/typicode/json-server) for project backend api.
 
-Please check out [Note API](https://github.com/iding-ir/note-api) for the backend RESTful API that this project works with.
+## Initialization
+
+First, run the backend api [(json-server)](https://github.com/typicode/json-server) using command below:
+
+```
+npm run start:api
+```
+
+Once json-server is ready, run project front-end:
+
+```
+npm start
+```
