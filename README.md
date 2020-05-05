@@ -7,7 +7,7 @@
 
 This project was created using React and Redux to demonstrate my front-end skills.
 
-I used my [react-redux-google-auth2](#https://github.com/iding-ir/react-redux-google-auth2) component for authentication, and [json-server](https://github.com/typicode/json-server) for project backend api.
+I used my [react-redux-google-auth2](https://github.com/iding-ir/react-redux-google-auth2) component for authentication, and [json-server](https://github.com/typicode/json-server) for project backend api.
 
 ## Initialization
 
