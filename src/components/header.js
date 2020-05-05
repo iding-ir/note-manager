@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 
-import GoogleAuth2 from "react-redux-google-auth2/dist/components/googleAuth2/";
+import { GoogleAuth2 } from "react-redux-google-auth2";
 
 function Header() {
   return (
