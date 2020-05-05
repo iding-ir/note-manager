@@ -1,7 +1,12 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 
-import { GoogleAuth2 } from "react-redux-google-auth2";
+import {
+  GoogleAuth2,
+  Profile,
+  SignIn,
+  SignOut,
+} from "react-redux-google-auth2";
 
 function Header() {
   return (
@@ -12,13 +17,13 @@ function Header() {
 
       <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
         <Nav>
-          <GoogleAuth2
-            clientId="978371680949-7iclvimbtnkiqncnnbf4v7tiibtt5vnp.apps.googleusercontent.com"
-            signInClass="btn btn-success"
-            signOutClass="btn btn-danger"
-          />
+          <GoogleAuth2 clientId="978371680949-7iclvimbtnkiqncnnbf4v7tiibtt5vnp.apps.googleusercontent.com" />
 
-          <Nav.Link href="#">Github</Nav.Link>
+          <Profile classes="profile" />
+
+          <SignIn classes="btn btn-success" />
+
+          <SignOut classes="btn btn-danger" />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
