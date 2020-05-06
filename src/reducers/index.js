@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
+import { googleAuth2Reducer } from "react-redux-google-auth2";
 
 import modalReducer from "./modal";
 import notesReducer from "./notes";
-import { googleAuth2Reducer } from "react-redux-google-auth2";
 
 const combinedReducers = combineReducers({
   modal: modalReducer,
