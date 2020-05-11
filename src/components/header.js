@@ -17,7 +17,7 @@ function Header() {
 
       <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
         <Nav>
-          <GoogleAuth2 clientId="978371680949-7iclvimbtnkiqncnnbf4v7tiibtt5vnp.apps.googleusercontent.com" />
+          <GoogleAuth2 clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID} />
 
           <Profile classes="profile" />
 
