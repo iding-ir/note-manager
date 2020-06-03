@@ -1,6 +1,6 @@
 import React from "react";
 
-import Note from "./note";
+import Note from "./Note";
 
 const Notes = (props) => {
   const { notes, deleteNote, googleAuth2 } = props;

@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { reset } from "redux-form";
 
-import Header from "./header";
-import Modal from "./modal";
-import Notes from "./notes";
-import Footer from "./footer";
+import Header from "./Header";
+import Modal from "./Modal";
+import Notes from "./Notes";
+import Footer from "./Footer";
 import { openModal, closeModal } from "../actions/modal";
 import { createNote, fetchNotes, deleteNote } from "../actions/notes";
 
